@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+html, 
+body{
+      background-image: url(../public/imagenes/fondos-de-rick-and-morty-3.png);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      width: 100%;
+    
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+    }
+    
