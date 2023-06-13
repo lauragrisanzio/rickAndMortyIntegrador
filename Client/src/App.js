@@ -18,6 +18,7 @@ function App() {
   const [access, setAccess] = useState(false);
   const EMAIL = ""; //completar con los datos
   const PASSWORD = ""; //completar con los datos
+  const URL = "http://localhost:3001/rickandmorty/character";
 
   useEffect(() => {
     !access && navigate("/");
@@ -41,7 +42,7 @@ function App() {
   const [characters, setCharacters] = useState([]);
 
   const onSearch = (id) => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`).then(
+    axios(`${URL}/${id}`).then(
       ({ data }) => {
         if (data.name && !characters.find((char) => char.id === data.id)) {
           setCharacters((oldChars) => [...oldChars, data]);

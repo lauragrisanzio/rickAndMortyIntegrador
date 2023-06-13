@@ -6,9 +6,9 @@ import { useEffect } from "react";
 const Detail = () => {
     const {id} = useParams()
     const [character, setCharacter] = useState([])
-    
+    const URL = "http://localhost:3001/rickandmorty/character";
     useEffect(() => {
-      axios(`https://rickandmortyapi.com/api/character/${id}`).then(
+      axios(`${URL}/${id}`).then(
         ({ data }) => {
           if (data.name) {
             setCharacter(data);
