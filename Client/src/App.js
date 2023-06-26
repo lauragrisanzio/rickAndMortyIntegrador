@@ -16,24 +16,32 @@ import Error404 from "./components/Error404/Error404.jsx";
 function App() {
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
-  const EMAIL = ""; //completar con los datos
-  const PASSWORD = ""; //completar con los datos
+  // const EMAIL = ""; //completar con los datos
+  // const PASSWORD = ""; //completar con los datos
   const URL = "http://localhost:3001/rickandmorty/character";
 
   useEffect(() => {
     !access && navigate("/");
   }, [access]);
 
-  function login(userData) {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate("/home");
-      alert(`¡Bienvenido ${userData.email}!`);
-    } else {
-      alert("Verifica tus datos");
-    }
-  }
-
+  // function login(userData) {
+  //   if (userData.password === PASSWORD && userData.email === EMAIL) {
+  //     setAccess(true);
+  //     navigate("/home");
+  //     alert(`¡Bienvenido ${userData.email}!`);
+  //   } else {
+  //     alert("Verifica tus datos");
+  //   }
+  // }
+function login(userData) {
+  const URL = "http://localhost:3001/rickandmorty/login/";
+  const { email, password } = userData;
+  axios(`${URL}?email=${email}&password=${password}`).then(({ data }) => {
+    const { access } = data;
+    setAccess(data);
+    access && navigate("/home");
+  });
+}
   const exit = () => {
     setAccess(false);
     navigate("/");
