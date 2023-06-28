@@ -37,7 +37,7 @@ myFavorites}) {
         <button onClick={handleFavorite}>😶</button>
       )}
       <div className={styles.card}>
-        <button className={styles.close} onClick={() => onClose(id)}>
+        <button onClick={() => onClose(id)} className={styles.close} >
           Close
         </button>
 

@@ -4,7 +4,6 @@ const router = express.Router()
 //tambien de esta forma:
 // const router = require("express").Router
 
-const server = require("express")
 const getCharById = require("../controllers/getCharById");
 const {deleteFav, postFav} = require("../controllers/handleFavorites");
 // const handleFavorites = require("../controllers/handleFavorites")

@@ -11,7 +11,8 @@ const login = (req, res) => {
     // res.status(400).json({access:false})
 //otra opcion - es mas optima porque uno no debe devolver nada, solo verificar si existe o no el usuario
     users.forEach(user => {
-        if (user.email === email && user.password === password) { return res.status(200).json({ access: true }); };
+        if (user.email === email && user.password === password)
+        { return res.status(200).json({ access: true }); };
     });
     return res.status(400).json({ access: false });
       
