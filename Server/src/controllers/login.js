@@ -1,21 +1,23 @@
-const users = require("../utils/users")
+const { User } = require("../DB_connection");
 
-const login = (req, res) => {
-    const { email, password } = req.query;
+//la informacion esta dentro de la base de datos
+const login = async (req, res) => {
+    const { email, password } = req.query;   //¿Como vamos a recibir por query datos sensibles???!!!
+    try {
+        if (!email || !password) return res.status(400).send( "Faltan datos" );
+       
+        const user = await User.findOne({
+            where:{email:email}
+        })
+        if (!email) return res.status(404).send("Usuario no encontrado");
+        return user.password === password ?
+            res.status(200).json({ access: true }) :
+            res.status(403).send("Contraseña incorrecta");
 
-    // const user = users.filter(log => log.email === email && log.password === password)
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 
-    // if (user) {
-    //     return res.status(200).json({access: true})
-    // }
-    // res.status(400).json({access:false})
-//otra opcion - es mas optima porque uno no debe devolver nada, solo verificar si existe o no el usuario
-    users.forEach(user => {
-        if (user.email === email && user.password === password)
-        { return res.status(200).json({ access: true }); };
-    });
-    return res.status(400).json({ access: false });
-      
 };
 
-module.exports = login
+module.exports = login;
